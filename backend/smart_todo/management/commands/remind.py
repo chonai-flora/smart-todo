@@ -32,12 +32,11 @@ class Command(BaseCommand):
 
         messages = []
         for todo in upcoming_deadline_todos:
-            if todo.completed:
-                continue
-            messages.append((
-                f'\n「{todo.title}」の期限が近づいています。'
-                f'\n期限: {todo.deadline.strftime("%Y年%-m月%-d日")}'
-            ))
+            if not todo.completed:
+                messages.append((
+                    f'\n「{todo.title}」の期限が近づいています。'
+                    f'\n期限: {todo.deadline.strftime("%Y年%-m月%-d日")}'
+                ))
 
         return '\n'.join(messages)
 
